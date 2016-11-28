@@ -85,9 +85,23 @@ controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "I'm here!")
 });
 
-controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'Hello!');
+controller.hears(['hello','aloha'], ['direct_message','direct_mention','mention'], function(bot, message) {
+    var message_options = [
+    "How was your weekend?",
+    "What are you excited about today?",
+    "What did you have for breakfast?",
+    "What is your favorite food?",
+    "What TV Shows are you watching right now?",
+    "Add Extreme to a random activity, what are the rules to your new sport?",
+    "Any vacations coming up?"
+	]
+	var random_index = Math.floor(Math.random() * message_options.length)
+	var chosen_message = message_options[random_index]
+
+	bot.reply(message, chosen_message)  
+
 });
+
 
 
 /**
